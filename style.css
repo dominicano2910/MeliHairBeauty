@@ -1,1 +1,342 @@
+/* ====== BASIC RESETS ====== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: #f7efe6;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* ====== COLORS (YOU CAN TWEAK THESE) ====== */
+:root {
+  --meli-bg: #f7efe6;
+  --meli-accent: #c89a6b;
+  --meli-accent-dark: #a87a4f;
+  --meli-dark: #222222;
+  --meli-muted: #777777;
+  --meli-white: #ffffff;
+}
+
+/* ====== LAYOUT ====== */
+section {
+  padding: 4rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ====== HEADER ====== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(247, 239, 230, 0.95);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.logo {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.site-nav a {
+  margin-left: 1.2rem;
+  text-decoration: none;
+  color: var(--meli-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+}
+
+.site-nav a:hover {
+  color: var(--meli-accent-dark);
+}
+
+/* ====== HERO ====== */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+  padding-top: 3.5rem;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.hero-text {
+  color: var(--meli-muted);
+  margin-bottom: 1.5rem;
+}
+
+.hero-content .eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  color: var(--meli-accent-dark);
+  margin-bottom: 0.75rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Placeholder hero image block */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img-placeholder {
+  width: 100%;
+  height: 280px;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, #fbe9dd, #d2b08a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--meli-dark);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* ====== BUTTONS ====== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.8rem 1.8rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn.primary {
+  background-color: var(--meli-accent);
+  color: var(--meli-white);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.btn.primary:hover {
+  background-color: var(--meli-accent-dark);
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  background-color: transparent;
+  color: var(--meli-accent-dark);
+  border: 1px solid var(--meli-accent);
+}
+
+.btn.secondary:hover {
+  background-color: var(--meli-accent);
+  color: var(--meli-white);
+}
+
+.btn.ghost {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  color: var(--meli-dark);
+}
+
+.btn.ghost:hover {
+  border-color: var(--meli-accent);
+  color: var(--meli-accent-dark);
+}
+
+/* ====== SECTION HEADERS ====== */
+.section {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+.section-alt {
+  background-color: #f0e3d4;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  color: var(--meli-accent-dark);
+  margin-bottom: 0.6rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+}
+
+/* ====== CATEGORY CARDS ====== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--meli-white);
+  border-radius: 18px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card h3 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.6rem;
+}
+
+.card p {
+  color: var(--meli-muted);
+  font-size: 0.9rem;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ====== PRODUCT GRID ====== */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background-color: var(--meli-white);
+  border-radius: 18px;
+  padding: 1rem 1rem 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-img {
+  width: 100%;
+  height: 160px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fbe9dd, #d6b18b);
+}
+
+.product-card h3 {
+  font-size: 0.95rem;
+}
+
+.price {
+  font-weight: 600;
+}
+
+/* ====== ABOUT GRID ====== */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.8rem;
+}
+
+.about-grid p {
+  color: var(--meli-muted);
+  font-size: 0.95rem;
+}
+
+/* ====== CONTACT SECTION ====== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 1.8rem;
+}
+
+.contact-grid a {
+  color: var(--meli-accent-dark);
+  text-decoration: none;
+}
+
+.contact-grid a:hover {
+  text-decoration: underline;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid #d7c8b7;
+  font: inherit;
+}
+
+/* ====== FOOTER ====== */
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--meli-muted);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-img-placeholder {
+    height: 220px;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .site-nav a {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
