@@ -2,161 +2,811 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Meli's Hair & Beauty</title>
+  <title>Meli De Leon Hair & Beauty Shop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <meta
+    name="description"
+    content="Premium wigs, bundles, and hair care products from Meli De Leon Hair & Beauty Shop."
+  />
+
+  <style>
+    :root {
+      --bg: #f7efe6;
+      --card-bg: #ffffff;
+      --accent: #c89a6b;
+      --accent-dark: #a77449;
+      --text-main: #222222;
+      --text-muted: #777777;
+      --border-light: #e5d6c6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ---------- LAYOUT ---------- */
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(247, 239, 230, 0.92);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.25rem;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.18s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 3rem;
+      align-items: center;
+      padding-top: 3rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-copy-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      max-width: 30rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      padding: 0.85rem 1.8rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease,
+        background-color 0.15s ease, color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .hero-meta {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-image {
+      background: radial-gradient(circle at top left, #fbe8da, #e0c2a7);
+      border-radius: 2rem;
+      padding: 2.2rem 2.2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-image-inner {
+      border-radius: 1.5rem;
+      background: #fdf7f2;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .hero-product-block {
+      border-radius: 1.3rem;
+      background: linear-gradient(145deg, #f5ddd1, #f5f0ea);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .circle {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      top: -30px;
+      right: -35px;
+    }
+
+    .hero-product-name {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-product-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .hero-stats {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      border-left: 1px solid var(--border-light);
+      padding-left: 1.1rem;
+    }
+
+    .hero-stats strong {
+      display: block;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    /* ---------- CATEGORIES ---------- */
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      border-radius: 1.4rem;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .category-pill {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+    }
+
+    .category-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .category-text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .category-link {
+      margin-top: 0.2rem;
+      font-size: 0.75rem;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* ---------- FEATURED PRODUCTS ---------- */
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 1.6rem;
+      padding: 1.4rem 1.3rem 1.5rem;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-tag {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .product-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .product-meta {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .product-price {
+      font-weight: 600;
+    }
+
+    .product-length {
+      color: var(--text-muted);
+    }
+
+    .product-actions {
+      margin-top: 0.7rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .chip {
+      font-size: 0.7rem;
+      border-radius: 999px;
+      padding: 0.2rem 0.6rem;
+      background: #f5e2d0;
+      color: var(--accent-dark);
+    }
+
+    /* ---------- ABOUT + TESTIMONIALS ---------- */
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .about-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .about-text {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border-radius: 1.6rem;
+      padding: 1.6rem 1.5rem;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .testimonial-quote {
+      margin-bottom: 0.9rem;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- NEWSLETTER ---------- */
+
+    .newsletter {
+      background: #f1dfcf;
+      border-radius: 1.8rem;
+      padding: 2.2rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .newsletter h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .newsletter p {
+      font-size: 0.9rem;
+      color: #5b4634;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      min-width: 180px;
+      border-radius: 999px;
+      border: none;
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.04);
+      padding: 2rem 1.25rem 2.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 900px) {
+      .hero,
+      .split,
+      .newsletter {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 2.5rem;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .section {
+        padding: 2.4rem 1.1rem;
+      }
+
+      .category-grid,
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter {
+        padding: 1.7rem 1.3rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- HEADER / NAV -->
-  <header class="site-header">
-    <div class="logo">Meli's Hair &amp; Beauty</div>
-    <nav class="site-nav">
-      <a href="#home">Home</a>
-      <a href="#shop">Shop</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <nav class="nav">
+        <div class="brand">Meli De Leon Hair &amp; Beauty</div>
+        <div class="nav-links">
+          <a href="#shop">Shop</a>
+          <a href="#about">About</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
 
-  <!-- HERO SECTION -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <p class="eyebrow">Premium Hair &amp; Beauty Supply</p>
-      <h1>Unleash Your Beauty Potential</h1>
-      <p class="hero-text">
-        Luxury wigs, bundles, and hair care products curated to keep you flawless
-        from day to night.
-      </p>
-      <div class="hero-actions">
-        <a href="#shop" class="btn primary">Shop Now</a>
-        <a href="#about" class="btn secondary">Learn More</a>
+    <main>
+      <!-- HERO -->
+      <section class="section hero" id="top">
+        <div>
+          <div class="hero-copy-eyebrow">Luxury hair &amp; beauty supply</div>
+          <h1>Unleash Your Beauty Potential</h1>
+          <p class="hero-subtitle">
+            Premium wigs, bundles, and hair care products curated to keep you
+            photo-ready from everyday glam to special events.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+              Shop New Arrivals
+            </button>
+            <button class="btn btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+              Learn About Meli
+            </button>
+          </div>
+          <p class="hero-meta" style="margin-top:1rem;">
+            Ships from the US · Install-ready bundles · Vet-owned business
+          </p>
+        </div>
+
+        <div class="hero-image">
+          <div class="hero-image-inner">
+            <div class="hero-product-block">
+              <div class="circle"></div>
+              <div class="hero-product-name">Signature Body Wave</div>
+              <div class="hero-product-tag">Soft, full, minimal shedding.</div>
+            </div>
+            <div class="hero-stats">
+              <strong>Over 1,000 bundles sold</strong>
+              Trusted by stylists and everyday queens for long-lasting glamour.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="section" id="shop">
+        <div class="section-heading">Shop by category</div>
+        <h2 class="section-title">Everything you need for flawless hair days</h2>
+
+        <div class="category-grid">
+          <article class="category-card">
+            <div class="category-pill">Wigs</div>
+            <div class="category-title">Lace Front &amp; Closure Wigs</div>
+            <p class="category-text">
+              HD lace, pre-plucked hairlines and beginner-friendly options that
+              melt into your skin.
+            </p>
+            <span class="category-link">Browse wigs →</span>
+          </article>
+
+          <article class="category-card">
+            <div class="category-pill">Bundles</div>
+            <div class="category-title">Bundles &amp; Closures</div>
+            <p class="category-text">
+              Body wave, straight, deep wave and more — mix-and-match for your
+              perfect install.
+            </p>
+            <span class="category-link">Shop bundles →</span>
+          </article>
+
+          <article class="category-card">
+            <div class="category-pill">Care</div>
+            <div class="category-title">Hair Care Essentials</div>
+            <p class="category-text">
+              Shampoos, conditioners and treatments that keep your bundles soft
+              and tangle free.
+            </p>
+            <span class="category-link">View care line →</span>
+          </article>
+
+          <article class="category-card">
+            <div class="category-pill">Accessories</div>
+            <div class="category-title">Tools &amp; Accessories</div>
+            <p class="category-text">
+              Edge brushes, bonnets, wig caps and more to protect your investment
+              day and night.
+            </p>
+            <span class="category-link">All accessories →</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- FEATURED PRODUCTS -->
+      <section class="section">
+        <div class="section-heading">Featured</div>
+        <h2 class="section-title">Customer favorites</h2>
+
+        <div class="products-grid">
+          <article class="product-card">
+            <div class="product-tag">Bundle deal</div>
+            <div class="product-name">Brazilian Body Wave Bundle Set</div>
+            <div class="product-meta">
+              <span class="product-price">$165.00</span>
+              <span class="product-length">18" • 20" • 22"</span>
+            </div>
+            <div class="product-actions">
+              <span class="chip">Best seller</span>
+              <button class="btn btn-primary" style="padding:.55rem 1.2rem;">
+                Add to cart
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-tag">Everyday glam</div>
+            <div class="product-name">HD Lace Front Wig – 24"</div>
+            <div class="product-meta">
+              <span class="product-price">$240.00</span>
+              <span class="product-length">Body Wave</span>
+            </div>
+            <div class="product-actions">
+              <span class="chip">Pre-plucked</span>
+              <button class="btn btn-primary" style="padding:.55rem 1.2rem;">
+                Add to cart
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-tag">Care</div>
+            <div class="product-name">Silk Press Care Kit</div>
+            <div class="product-meta">
+              <span class="product-price">$48.00</span>
+              <span class="product-length">Shampoo • Mask • Serum</span>
+            </div>
+            <div class="product-actions">
+              <span class="chip">Bundle & save</span>
+              <button class="btn btn-primary" style="padding:.55rem 1.2rem;">
+                Add to cart
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ABOUT + TESTIMONIAL -->
+      <section class="section" id="about">
+        <div class="split">
+          <div>
+            <div class="about-eyebrow">About Meli</div>
+            <h2 class="about-title">Hair that feels like you — just elevated.</h2>
+            <p class="about-text">
+              Meli De Leon Hair &amp; Beauty Shop was created to make salon-quality
+              hair accessible, reliable and beautiful. Every bundle and wig is
+              tested for softness, fullness and longevity before it reaches your
+              hands.
+            </p>
+            <p class="about-text">
+              Whether you’re getting ready for work, a date night, or a special
+              event, we’re here to keep you camera-ready with zero stress.
+            </p>
+            <div class="badge-row">
+              <span class="badge">Hand-selected hair</span>
+              <span class="badge">Fast US shipping</span>
+              <span class="badge">Secure checkout</span>
+            </div>
+          </div>
+
+          <aside class="testimonial-card" id="reviews">
+            <p class="testimonial-quote">
+              “These are the best bundles I’ve ever installed. They stayed soft
+              through multiple washes and the lace melted perfectly. My clients
+              keep asking where I get them from.”
+            </p>
+            <div class="testimonial-name">Jasmin R.</div>
+            <div class="testimonial-sub">Licensed stylist, Worcester MA</div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER / CONTACT -->
+      <section class="section" id="contact">
+        <div class="newsletter">
+          <div>
+            <h3>Join the Glam List</h3>
+            <p>
+              Be the first to know about restocks, sales and new collections —
+              plus get occasional hair care tips straight from Meli.
+            </p>
+          </div>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('This is a demo form. Connect it to your email service.');">
+            <input
+              class="newsletter-input"
+              type="email"
+              placeholder="Enter your email"
+              required
+            />
+            <button class="btn btn-primary" type="submit">
+              Get updates
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div>
+          © <span id="year"></span> Meli De Leon Hair &amp; Beauty Shop.
+          All rights reserved.
+        </div>
+        <div class="footer-links">
+          <span>Instagram</span>
+          <span>Facebook</span>
+          <span>WhatsApp</span>
+          <span>Email: info@example.com</span>
+        </div>
       </div>
-    </div>
-    <div class="hero-image">
-      <!-- Replace with your own image URL if you want -->
-      <div class="hero-img-placeholder">Your hero image here</div>
-    </div>
-  </section>
-
-  <!-- CATEGORIES SECTION -->
-  <section id="categories" class="section">
-    <div class="section-header">
-      <p class="eyebrow">Shop by Category</p>
-      <h2>Find Your Perfect Look</h2>
-    </div>
-    <div class="card-grid">
-      <article class="card">
-        <h3>Wigs</h3>
-        <p>HD lace, frontal, and closure wigs ready to wear.</p>
-      </article>
-      <article class="card">
-        <h3>Bundles</h3>
-        <p>Body wave, straight, curly, and more in every length.</p>
-      </article>
-      <article class="card">
-        <h3>Hair Care</h3>
-        <p>Shampoos, conditioners, and treatments to protect your investment.</p>
-      </article>
-      <article class="card">
-        <h3>Accessories</h3>
-        <p>Edge control, bonnets, brushes, and styling must-haves.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- FEATURED PRODUCTS -->
-  <section id="shop" class="section section-alt">
-    <div class="section-header">
-      <p class="eyebrow">Featured</p>
-      <h2>Best Sellers</h2>
-    </div>
-    <div class="product-grid">
-      <article class="product-card">
-        <div class="product-img"></div>
-        <h3>Body Wave 18" Bundle</h3>
-        <p class="price">$85.00</p>
-        <a href="#" class="btn ghost">Details</a>
-      </article>
-      <article class="product-card">
-        <div class="product-img"></div>
-        <h3>13x4 HD Lace Wig 24"</h3>
-        <p class="price">$320.00</p>
-        <a href="#" class="btn ghost">Details</a>
-      </article>
-      <article class="product-card">
-        <div class="product-img"></div>
-        <h3>Silk Press Care Set</h3>
-        <p class="price">$45.00</p>
-        <a href="#" class="btn ghost">Details</a>
-      </article>
-      <article class="product-card">
-        <div class="product-img"></div>
-        <h3>Edge Control + Brush Kit</h3>
-        <p class="price">$15.00</p>
-        <a href="#" class="btn ghost">Details</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section id="about" class="section">
-    <div class="section-header">
-      <p class="eyebrow">About Us</p>
-      <h2>Beauty, Curated With Love</h2>
-    </div>
-    <div class="about-grid">
-      <div>
-        <p>
-          Meli's Hair &amp; Beauty was created to bring salon-quality products
-          directly to your door. Every wig, bundle, and product is hand-picked
-          to meet our quality standards.
-        </p>
-        <p>
-          Whether you’re getting ready for work, a night out, or a special
-          event, we make sure you feel confident every time you step out.
-        </p>
-      </div>
-      <div>
-        <p>
-          Based in Worcester, MA, we proudly serve our local community and ship
-          nationwide. Got questions about textures, lengths, or care? We’re here
-          to guide you.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="section section-alt">
-    <div class="section-header">
-      <p class="eyebrow">Contact</p>
-      <h2>Let’s Connect</h2>
-    </div>
-    <div class="contact-grid">
-      <div>
-        <p>Email: <a href="mailto:info@melishairbeauty.com">info@melishairbeauty.com</a></p>
-        <p>WhatsApp: <a href="tel:+15085550123">(508) 555-0123</a></p>
-        <p>Instagram: @melishairbeauty</p>
-      </div>
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="How can we help?" rows="4"></textarea>
-        <button type="submit" class="btn primary">Send Message</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <p>© <span id="year"></span> Meli's Hair &amp; Beauty. All rights reserved.</p>
-  </footer>
+    </footer>
+  </div>
 
   <script>
-    // Auto-update year in footer
+    // Set current year automatically
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
-
